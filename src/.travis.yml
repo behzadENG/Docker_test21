@@ -1,0 +1,9 @@
+sudo : required 
+services: 
+  - docker
+
+before_install :
+  - docker build -t bucki_docker -f Dockerfile.dev .  
+
+script:
+  - docker run -e CI=true bucki_docker npm run test -- --coverage
